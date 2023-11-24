@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "62C85B68-88B8-420B-A02D-E499DB75697F"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DDA22E55-F7DE-4BA8-A5C3-2FDB298D6265"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetPlanner/Views/AddExpenseView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "validateExactMatch()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DDA22E55-F7DE-4BA8-A5C3-2FDB298D6265 - da5c4072c23a9a10"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetPlanner.AddExpenseView.validateExactMatch() -&gt; Swift.Bool"
+                  moduleName = "BudgetPlanner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kalebupatan/Documents/iOS/Projects/BudgetPlanner/BudgetPlanner/Views/AddExpenseView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
+                  offsetFromSymbolStart = "260">
+               </Location>
+               <Location
+                  uuid = "DDA22E55-F7DE-4BA8-A5C3-2FDB298D6265 - cca752c71daf0248"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (BudgetPlanner.People) -&gt; Swift.Optional&lt;__C.NSDecimal&gt; in BudgetPlanner.AddExpenseView.validateExactMatch() -&gt; Swift.Bool"
+                  moduleName = "BudgetPlanner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kalebupatan/Documents/iOS/Projects/BudgetPlanner/BudgetPlanner/Views/AddExpenseView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "DDA22E55-F7DE-4BA8-A5C3-2FDB298D6265 - da5c4072c23a98f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetPlanner.AddExpenseView.validateExactMatch() -&gt; Swift.Bool"
+                  moduleName = "BudgetPlanner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kalebupatan/Documents/iOS/Projects/BudgetPlanner/BudgetPlanner/Views/AddExpenseView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "184"
+                  endingLineNumber = "184"
+                  offsetFromSymbolStart = "260">
+               </Location>
+               <Location
+                  uuid = "DDA22E55-F7DE-4BA8-A5C3-2FDB298D6265 - cca752c71daf00a1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (BudgetPlanner.People) -&gt; Swift.Optional&lt;__C.NSDecimal&gt; in BudgetPlanner.AddExpenseView.validateExactMatch() -&gt; Swift.Bool"
+                  moduleName = "BudgetPlanner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kalebupatan/Documents/iOS/Projects/BudgetPlanner/BudgetPlanner/Views/AddExpenseView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "184"
+                  endingLineNumber = "184"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F921D209-306F-460A-B098-21421A7AC7B7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetPlanner/Views/AddExpenseView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "validateExactMatch()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F921D209-306F-460A-B098-21421A7AC7B7 - da5c4072c23a9a52"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetPlanner.AddExpenseView.validateExactMatch() -&gt; Swift.Bool"
+                  moduleName = "BudgetPlanner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kalebupatan/Documents/iOS/Projects/BudgetPlanner/BudgetPlanner/Views/AddExpenseView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "560">
+               </Location>
+               <Location
+                  uuid = "F921D209-306F-460A-B098-21421A7AC7B7 - da5c4072c23a9b3b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetPlanner.AddExpenseView.validateExactMatch() -&gt; Swift.Bool"
+                  moduleName = "BudgetPlanner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kalebupatan/Documents/iOS/Projects/BudgetPlanner/BudgetPlanner/Views/AddExpenseView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "560">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C6EC6B4D-B0FF-47D8-8031-F0A068D56569"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BudgetPlanner/Views/AddExpenseView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "validateExactMatch()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C6EC6B4D-B0FF-47D8-8031-F0A068D56569 - da5c4072c23a9a94"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetPlanner.AddExpenseView.validateExactMatch() -&gt; Swift.Bool"
+                  moduleName = "BudgetPlanner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kalebupatan/Documents/iOS/Projects/BudgetPlanner/BudgetPlanner/Views/AddExpenseView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "600">
+               </Location>
+               <Location
+                  uuid = "C6EC6B4D-B0FF-47D8-8031-F0A068D56569 - 8b7a8976a452ee7b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #1 (__C.NSDecimal, __C.NSDecimal) -&gt; __C.NSDecimal in BudgetPlanner.AddExpenseView.validateExactMatch() -&gt; Swift.Bool"
+                  moduleName = "BudgetPlanner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kalebupatan/Documents/iOS/Projects/BudgetPlanner/BudgetPlanner/Views/AddExpenseView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "C6EC6B4D-B0FF-47D8-8031-F0A068D56569 - da5c4072c23a9b7d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BudgetPlanner.AddExpenseView.validateExactMatch() -&gt; Swift.Bool"
+                  moduleName = "BudgetPlanner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kalebupatan/Documents/iOS/Projects/BudgetPlanner/BudgetPlanner/Views/AddExpenseView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "600">
+               </Location>
+               <Location
+                  uuid = "C6EC6B4D-B0FF-47D8-8031-F0A068D56569 - 8b7a8976a452ef92"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #1 (__C.NSDecimal, __C.NSDecimal) -&gt; __C.NSDecimal in BudgetPlanner.AddExpenseView.validateExactMatch() -&gt; Swift.Bool"
+                  moduleName = "BudgetPlanner"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kalebupatan/Documents/iOS/Projects/BudgetPlanner/BudgetPlanner/Views/AddExpenseView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "216">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
