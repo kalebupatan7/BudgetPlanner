@@ -14,7 +14,7 @@ final class Budget {
     var from: Date
     var to: Date
     var peoples = [People]()
-    @Relationship(deleteRule: .noAction)  var expenses = [Expense]()
+    @Relationship var expenses = [Expense]()
 
     init(name: String = "", from: Date = Date(), to: Date = Date().addingTimeInterval(24*60*60), expenses: [Expense] = [Expense](), peoples:[People] = [People]()) {
         self.name = name

@@ -142,11 +142,10 @@ struct TripView: View {
     }
     
     func isValidEmailAddr(strToValidate: String) -> Bool {
-          let emailValidationRegex = "^[\\p{L}0-9!#$%&'*+\\/=?^_`{|}~-][\\p{L}0-9.!#$%&'*+\\/=?^_`{|}~-]{0,63}@[\\p{L}0-9-]+(?:\\.[\\p{L}0-9-]{2,7})*$"
-          let emailValidationPredicate = NSPredicate(format: "SELF MATCHES %@", emailValidationRegex)
-        print("Nenu",modelContext.sqliteCommand)
-          return emailValidationPredicate.evaluate(with: strToValidate)
-   }
+        let emailValidationRegex = "^[\\p{L}0-9!#$%&'*+\\/=?^_`{|}~-][\\p{L}0-9.!#$%&'*+\\/=?^_`{|}~-]{0,63}@[\\p{L}0-9-]+(?:\\.[\\p{L}0-9-]{2,7})*$"
+        let emailValidationPredicate = NSPredicate(format: "SELF MATCHES %@", emailValidationRegex)
+        return emailValidationPredicate.evaluate(with: strToValidate)
+    }
 }
 
 #Preview {

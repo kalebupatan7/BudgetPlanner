@@ -10,11 +10,13 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
+    @Environment(CurrencyChange.self) private var currencyChange
     @Query(sort: [SortDescriptor(\Budget.from, order: .reverse), SortDescriptor(\Budget.name)]) var budgets: [Budget]
     @State private var visibility: NavigationSplitViewVisibility = .all
     @State private var selectedBudget: Budget?
     
     var body: some View {
+        
         NavigationSplitView(columnVisibility: $visibility) {
             List(selection: $selectedBudget) {
                 ForEach(budgets) { budget in
@@ -30,8 +32,23 @@ struct ContentView: View {
             }
             .navigationTitle("Trips")
             .toolbar {
-                NavigationLink(destination: TripView(budget: Budget())) { Image(systemName: "plus")
-                        .foregroundColor(.black)
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    Button {
+                        currencyChange.currency = currencyChange.currency == .dollor ? .euro : .dollor
+                    } label: {
+                        if currencyChange.currency == .dollor {
+                            Image(systemName: "dollarsign")
+                                .foregroundColor(.blue)
+                        } else {
+                            Image(systemName: "eurosign")
+                                .foregroundColor(.blue)
+                        }
+                    }
+
+                    NavigationLink(destination: TripView(budget: Budget())) {
+                        Image(systemName: "plus")
+                            .foregroundColor(.blue)
+                    }
                 }
             }
         } detail: {
@@ -56,14 +73,4 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-}
-
-extension ModelContext {
-    var sqliteCommand: String {
-        if let url = container.configurations.first?.url.path(percentEncoded: false) {
-            "sqlite3 \"\(url)\""
-        } else {
-            "No SQLite database found."
-        }
-    }
 }

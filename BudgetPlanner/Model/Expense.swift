@@ -11,10 +11,10 @@ import SwiftData
 @Model
 final class Expense {
     var name: String
-    var paidBy: PeopleWithMoney?
+    @Relationship var paidBy: PeopleWithMoney?
     var amount: Decimal?
     var date: Date
-    var shares = [PeopleWithMoney]()
+    @Relationship var shares = [PeopleWithMoney]()
     var receipt: Data?
     
     init(name: String = "", paidBy: PeopleWithMoney? = nil, amount: Decimal? = nil, date: Date = Date(), shares: [PeopleWithMoney] = [PeopleWithMoney](), receipt: Data? = nil) {

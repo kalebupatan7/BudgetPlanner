@@ -27,11 +27,12 @@ enum Currency: String, CaseIterable, Identifiable {
     var id: String { self.rawValue }
 }
 
+enum Currencies: String {
+    case dollor = "USD"
+    case euro = "EUR"
+}
+
 @Observable class CurrencyChange: ObservableObject {
-    enum Currencies: String {
-        case dollor = "USD"
-        case euro = "EUR"
-    }
     var currency:Currencies = .dollor
     
 }
