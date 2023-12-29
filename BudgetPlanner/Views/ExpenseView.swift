@@ -21,7 +21,7 @@ struct ExpenseView: View {
             }
             Section("EXPENSE AMOUNT") {
                 if let amount = expense.amount {
-                    Text(amount.formatted(.currency(code: currencyChange.currency.rawValue)))
+                    Text((currencyChange.currency.getCurrencyValue * amount).formatted(.currency(code: currencyChange.currency.rawValue)))
                 }
             }
             
@@ -31,7 +31,7 @@ struct ExpenseView: View {
             
             Section("SHARES") {
                 ForEach(expense.shares) { people in
-                    Text("\(people.people?.name ?? "")'s share:  \((people.settled ?? 0).formatted(.currency(code: currencyChange.currency.rawValue)))")
+                    Text("\(people.people?.name ?? "")'s share:  \((currencyChange.currency.getCurrencyValue * (people.settled ?? 0)).formatted(.currency(code: currencyChange.currency.rawValue)))")
                 }
             }
             

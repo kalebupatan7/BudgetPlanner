@@ -65,8 +65,8 @@ struct EditTripView: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 60)
                 .background(oldPeoples.count == 0 ? .gray : .blue)
+                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                 .padding(10)
-                .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
             }
             
             
@@ -90,8 +90,8 @@ struct EditTripView: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 60)
                 .background($name.wrappedValue.isEmpty || $email.wrappedValue.isEmpty ? .gray : .blue)
+                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                 .padding(10)
-                .clipShape(RoundedRectangle(cornerRadius: 25, style: .circular))
             } header: {
                 Text("ADD A NEW PERSON")
             } footer: {
@@ -114,8 +114,8 @@ struct EditTripView: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 60)
                 .background(.blue)
-                .padding()
-                .clipShape(RoundedRectangle(cornerRadius: 25, style: .circular))
+                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                .padding(10)
             }
         }
         VStack {
@@ -128,8 +128,8 @@ struct EditTripView: View {
             .frame(maxWidth: .infinity)
             .frame(height: 60)
             .background(.blue)
+            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
             .padding()
-            .clipShape(RoundedRectangle(cornerRadius: 25, style: .circular))
             
             NavigationLink(destination: {
                 SettleUpView(budget: budget)
@@ -140,8 +140,8 @@ struct EditTripView: View {
             .frame(maxWidth: .infinity)
             .frame(height: 60)
             .background(.blue)
+            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
             .padding()
-            .clipShape(RoundedRectangle(cornerRadius: 25, style: .circular))
             
         }
         .navigationTitle(budget.name)

@@ -35,6 +35,7 @@ struct ContentView: View {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button {
                         currencyChange.currency = currencyChange.currency == .dollor ? .euro : .dollor
+                        UserDefaults.standard.set(currencyChange.currency.rawValue, forKey: "Currency")
                     } label: {
                         if currencyChange.currency == .dollor {
                             Image(systemName: "dollarsign")

@@ -23,7 +23,7 @@ struct ExpensesListView: View {
                             Text(expense.name)
                                 .font(.headline)
                             if let paidby = expense.paidBy?.people?.name, let amount = expense.paidBy?.settled {
-                                Text("\(paidby) paid \(amount.formatted(.currency(code: currencyChange.currency.rawValue)))")
+                                Text("\(paidby) paid \((currencyChange.currency.getCurrencyValue * amount).formatted(.currency(code: currencyChange.currency.rawValue)))")
                             }
                         }
                     }

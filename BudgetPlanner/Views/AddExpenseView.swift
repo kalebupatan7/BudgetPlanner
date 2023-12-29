@@ -58,10 +58,9 @@ struct AddExpenseView: View {
                 }
                 
                 Section {
-                    TextField("Enter Expense Amount", value: $expense.amount, format: .currency(code: currencyChange.currency.rawValue))
-                        .keyboardType(.decimalPad)
+                    TextField("Enter Expense Amount", value: $expense.amount, format: .currency(code: "US"))
+                        .keyboardType(.numbersAndPunctuation)
                         .focused($focusedField, equals: .amount)
-
                 } header: {
                     Text("EXPENSE AMOUNT")
                 }
@@ -105,9 +104,9 @@ struct AddExpenseView: View {
                             .frame(maxWidth: .infinity)
                             .frame(height: 60)
                             .background(.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                             .padding()
-                            .clipShape(RoundedRectangle(cornerRadius: 25, style: .circular))
-                            .navigationTitle("Add a Trip")
+                            .navigationTitle("Add an Expense")
                             .onChange(of: selectedItem) { _, newItem in
                                 Task {
                                     if let data = try? await newItem?.loadTransferable(type: Data.self) {
@@ -132,6 +131,9 @@ struct AddExpenseView: View {
                     }
                 }
             Button(action: {
+                if let amount = expense.amount {
+                    expense.amount = amount * (currencyChange.currency == .dollor ? 1 : 1.09)
+                }
                  selectedPeople = selectedPeople == nil ? ($budget.wrappedValue.peoples.filter({$0.isSelected}).first == nil ? $budget.wrappedValue.peoples.first : $budget.wrappedValue.peoples.filter({$0.isSelected}).first) : selectedPeople
                 if !isCustomEnabled {
                     selectedPeople?.settled = expense.amount
@@ -144,7 +146,9 @@ struct AddExpenseView: View {
                     if people == selectedPeople {
                         newShares.append(expense.paidBy!)
                     } else {
-                        newShares.append(PeopleWithMoney(people: people, settled: people.settled))
+                        if let settled = people.settled {
+                            newShares.append(PeopleWithMoney(people: people, settled: settled  * (currencyChange.currency == .dollor ? 1 : 1.09)))
+                        }
                     }
                 }
                 if isCustomEnabled {
@@ -154,17 +158,17 @@ struct AddExpenseView: View {
                 expense.receipt = selectedImageData
                 addExpense()
             }) {
-                Text("Add Trip")
+                Text("Add Expense")
                     .foregroundStyle(.white)
             }
             .disabled(validateAllFields())
             .frame(maxWidth: .infinity)
             .frame(height: 60)
             .background(validateAllFields() ? .gray :.blue)
+            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
             .padding()
-            .clipShape(RoundedRectangle(cornerRadius: 25, style: .circular))
         }
-        .navigationTitle("Add a Trip")
+        .navigationTitle("Add an Expense")
     }
     
     func addExpense() {

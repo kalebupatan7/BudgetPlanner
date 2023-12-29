@@ -90,9 +90,6 @@ final class BudgetPlannerTests: XCTestCase {
     
     func testMultipleExpenses() throws {
         
-//        let peopleWithMoney1 = PeopleWithMoney(people: people,settled: 10.25)
-//        let peopleWithMoney1 = PeopleWithMoney(people: people,settled: 10.25)
-        
         let people = People(name: "Joe Doe", email: "example@edu.com")
         context.insert(people)
         

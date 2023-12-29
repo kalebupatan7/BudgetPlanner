@@ -22,17 +22,18 @@ extension String {
     }
 }
 
-enum Currency: String, CaseIterable, Identifiable {
-    case AUD, CAD, EUR, GBP, NZD, USD
-    var id: String { self.rawValue }
-}
-
 enum Currencies: String {
     case dollor = "USD"
     case euro = "EUR"
+    
+    var getCurrencyValue: Decimal {
+        switch self {
+        case .dollor: return 1
+        case .euro: return 0.92
+        }
+    }
 }
 
 @Observable class CurrencyChange: ObservableObject {
-    var currency:Currencies = .dollor
-    
+    var currency:Currencies = UserDefaults.standard.string(forKey: "Currency") == Currencies.dollor.rawValue ? .dollor : .euro
 }

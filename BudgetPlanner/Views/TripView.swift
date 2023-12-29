@@ -79,8 +79,8 @@ struct TripView: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 60)
                 .background(oldPeoples.count == 0 ? .gray : .blue)
+                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                 .padding(10)
-                .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
             }
             
             Section{
@@ -103,8 +103,8 @@ struct TripView: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 60)
                 .background($name.wrappedValue.isEmpty || $email.wrappedValue.isEmpty ? .gray : .blue)
+                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                 .padding(10)
-                .clipShape(RoundedRectangle(cornerRadius: 25, style: .circular))
             } header: {
                 Text("ADD A NEW PERSON")
             } footer: {
@@ -127,8 +127,8 @@ struct TripView: View {
         .frame(maxWidth: .infinity)
         .frame(height: 60)
         .background(validateAllFields() ? .gray :.blue)
+        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
         .padding()
-        .clipShape(RoundedRectangle(cornerRadius: 25, style: .circular))
         .navigationTitle("Add a Trip")
     }
     

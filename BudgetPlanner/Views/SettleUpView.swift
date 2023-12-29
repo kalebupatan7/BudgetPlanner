@@ -31,13 +31,14 @@ struct SettleUpView: View {
             }
             self.openMail(emailTo: self.$budget.wrappedValue.peoples.map({$0.email}).joined(separator: ","), subject: "Remainder From Budgetly", body: body)
         }) {
-            Text("Add Trip")
+            Text("Remind People")
                 .foregroundStyle(.white)
         }
         .frame(maxWidth: .infinity)
         .frame(height: 60)
+        .background(.blue)
+        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
         .padding()
-        .clipShape(RoundedRectangle(cornerRadius: 25, style: .circular))
         
     }
     
@@ -45,10 +46,10 @@ struct SettleUpView: View {
         
         var owes = [People:Decimal]()
         for expense in expenses {
-            if expense.paidBy?.people?.id != user.id {
+            if let paidBy = expense.paidBy?.people, paidBy.id != user.id {
                 for share in expense.shares {
                     if let sharePeople = share.people, sharePeople.id == user.id {
-                        owes[sharePeople, default: 0] +=  share.settled ?? 0
+                        owes[paidBy, default: 0] +=  share.settled ?? 0
                     }
                 }
             }
@@ -57,7 +58,7 @@ struct SettleUpView: View {
         var final = [String]()
         
         for (k,v) in owes {
-            final.append("Owes \(k.name): \(v.formatted(.currency(code: currencyChange.currency.rawValue)))")
+            final.append("Owes \(k.name): \((currencyChange.currency.getCurrencyValue * v).formatted(.currency(code: currencyChange.currency.rawValue)))")
         }
         final = final.count == 0 ? ["Owes Nothing!"] : final
         return final
