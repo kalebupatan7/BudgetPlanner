@@ -22,8 +22,8 @@ struct ExpensesListView: View {
                         VStack(alignment: .leading) {
                             Text(expense.name)
                                 .font(.headline)
-                            if let paidby = expense.paidBy?.people?.name, let amount = expense.paidBy?.settled {
-                                Text("\(paidby) paid \((currencyChange.currency.getCurrencyValue * amount).formatted(.currency(code: currencyChange.currency.rawValue)))")
+                            if let paidby = expense.paidBy?.people?.name, let amount = expense.amount {
+                                Text(paidby+K.paid+(currencyChange.currency.getCurrencyValue * amount).formatted(.currency(code: currencyChange.currency.currencyString)))
                             }
                         }
                     }
@@ -31,9 +31,9 @@ struct ExpensesListView: View {
                 .onDelete(perform: deleteExpenses)
             }
         }
-        .navigationTitle("Expenses")
+        .navigationTitle(K.expenses)
         .toolbar {
-            NavigationLink(destination: AddExpenseView(budget: budget)) { Image(systemName: "plus")
+            NavigationLink(destination: AddExpenseView(budget: budget)) { Image(systemName: K.plusIcon)
                     .foregroundColor(.black)
             }
         }

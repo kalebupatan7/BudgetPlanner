@@ -30,24 +30,24 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteDestinations)
             }
-            .navigationTitle("Trips")
+            .navigationTitle(K.trips)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button {
                         currencyChange.currency = currencyChange.currency == .dollor ? .euro : .dollor
-                        UserDefaults.standard.set(currencyChange.currency.rawValue, forKey: "Currency")
+                        UserDefaults.standard.set(currencyChange.currency.currencyString, forKey: K.currency)
                     } label: {
                         if currencyChange.currency == .dollor {
-                            Image(systemName: "dollarsign")
+                            Image(systemName: K.dollarsign)
                                 .foregroundColor(.blue)
                         } else {
-                            Image(systemName: "eurosign")
+                            Image(systemName: K.eurosign)
                                 .foregroundColor(.blue)
                         }
                     }
 
                     NavigationLink(destination: TripView(budget: Budget())) {
-                        Image(systemName: "plus")
+                        Image(systemName: K.plusIcon)
                             .foregroundColor(.blue)
                     }
                 }

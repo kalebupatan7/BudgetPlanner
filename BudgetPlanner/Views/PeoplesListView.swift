@@ -25,7 +25,7 @@ struct PeoplesListView: View {
                             .foregroundStyle(.black)
                         Spacer()
                         if peoples[i].isSelected {
-                            Image(systemName: "checkmark")
+                            Image(systemName: K.checkmarkIcon)
                                 .foregroundStyle(.green)
                         }
                     }

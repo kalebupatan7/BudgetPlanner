@@ -14,8 +14,8 @@ struct EditTripView: View {
     @Query(sort: [SortDescriptor(\People.dateAdded) ]) private var oldPeoples: [People]
     @Bindable var budget: Budget
     @State private var peoples = [People]()
-    @State private var name = ""
-    @State private var email = ""
+    @State private var name = K.emptyString
+    @State private var email = K.emptyString
     
     var body: some View {
         Form {
@@ -32,20 +32,20 @@ struct EditTripView: View {
                             peoples.removeLast()
                         }
                     }) {
-                        Image(systemName: "delete.backward.fill")
+                        Image(systemName: K.deleteIcon)
                             .renderingMode(.original)
                     }
                 }
             } header: {
-                Text("PEOPLE")
+                Text(K.people)
             }
             
-            Section("ADD A PERSON") {
+            Section(K.addAPerson) {
                 List {
                     ForEach(oldPeoples.filter({$0.isSelected})) { people in
                         NavigationLink(destination: PeoplesListView()) {
                             HStack {
-                                Text("Name :")
+                                Text(K.name)
                                 Spacer()
                                 Text(people.name)
                             }
@@ -57,7 +57,7 @@ struct EditTripView: View {
                         peoples.append(people)
                     }
                 }) {
-                    Text("Add Person")
+                    Text(K.addPerson)
                         .foregroundStyle(.white)
                     
                 }
@@ -71,19 +71,19 @@ struct EditTripView: View {
             
             
             Section {
-                TextField("Enter Name", text: $name)
-                TextField("Enter Email", text: $email)
+                TextField(K.enterName, text: $name)
+                TextField(K.enterEmail, text: $email)
                     .keyboardType(.emailAddress)
                     .textContentType(.emailAddress)
                     .textInputAutocapitalization(.never)
                 Button(action: {
                     if self.isValidEmailAddr(strToValidate: email) {
                         peoples.append(People(name: name, email: email, isSelected: false))
-                        name = ""
-                        email = ""
+                        name = K.emptyString
+                        email = K.emptyString
                     }
                 }) {
-                    Text("Add New Person")
+                    Text(K.addNewPerson)
                         .foregroundStyle(.white)
                 }
                 .disabled($name.wrappedValue.isEmpty || $email.wrappedValue.isEmpty)
@@ -93,10 +93,10 @@ struct EditTripView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                 .padding(10)
             } header: {
-                Text("ADD A NEW PERSON")
+                Text(K.addANewPerson)
             } footer: {
-                if email != "" && !self.isValidEmailAddr(strToValidate: email) {
-                    Text("Enter valid email address")
+                if email != K.emptyString && !self.isValidEmailAddr(strToValidate: email) {
+                    Text(K.enterValidEmail)
                         .fontWeight(.regular)
                         .foregroundStyle(.red)
                 }
@@ -108,7 +108,7 @@ struct EditTripView: View {
                     $budget.wrappedValue.peoples.sort(by: {$0.dateAdded < $1.dateAdded})
                     peoples.removeAll()
                 }) {
-                    Text("Confirm Changes")
+                    Text(K.confirmChanges)
                         .foregroundStyle(.white)
                 }
                 .frame(maxWidth: .infinity)
@@ -122,7 +122,7 @@ struct EditTripView: View {
             NavigationLink(destination: {
                 ExpensesListView(budget: budget)
             }) {
-                Text("Expenses")
+                Text(K.expenses)
                     .foregroundStyle(.white)
             }
             .frame(maxWidth: .infinity)
@@ -134,7 +134,7 @@ struct EditTripView: View {
             NavigationLink(destination: {
                 SettleUpView(budget: budget)
             }) {
-                Text("Settle Up!")
+                Text(K.settleUp)
                     .foregroundStyle(.white)
             }
             .frame(maxWidth: .infinity)
@@ -149,26 +149,12 @@ struct EditTripView: View {
     }
     
     func validateAllFields() -> Bool {
-        self.$budget.wrappedValue.name == "" || self.peoples.count == 0
+        self.$budget.wrappedValue.name == K.emptyString || self.peoples.count == 0
     }
     
     func isValidEmailAddr(strToValidate: String) -> Bool {
-          let emailValidationRegex = "^[\\p{L}0-9!#$%&'*+\\/=?^_`{|}~-][\\p{L}0-9.!#$%&'*+\\/=?^_`{|}~-]{0,63}@[\\p{L}0-9-]+(?:\\.[\\p{L}0-9-]{2,7})*$"
-          let emailValidationPredicate = NSPredicate(format: "SELF MATCHES %@", emailValidationRegex)
+        let emailValidationPredicate = NSPredicate(format: K.selfMatches, K.validEmailRegex)
           return emailValidationPredicate.evaluate(with: strToValidate)
    }
 
-}
-
-#Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: Expense.self, configurations: config)
-        let people = People(name: "Dummy", email: "kal@wer.com")
-        let budget = Budget(name: "Dummy", from: Date(), to: Date())
-        return EditTripView(budget: budget)
-            .modelContainer(container)
-    } catch {
-        fatalError("Failed to create model container.")
-    }
 }

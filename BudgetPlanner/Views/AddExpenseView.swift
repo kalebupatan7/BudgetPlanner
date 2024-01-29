@@ -34,19 +34,19 @@ struct AddExpenseView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("EXPENSE NAME") {
-                    TextField("Enter Trip Name", text: $expense.name)
+                Section(K.expenseName) {
+                    TextField(K.enterExpenseName, text: $expense.name)
                         .focused($focusedField, equals: .str)
                 }
                 
-                Section("PAID BY") {
+                Section(K.paidBy) {
                     List {
                         let selectedPeople = selectedPeople == nil ? ($budget.wrappedValue.peoples.filter({$0.isSelected}).first == nil ? $budget.wrappedValue.peoples.first : $budget.wrappedValue.peoples.filter({$0.isSelected}).first) : selectedPeople
                         if let selectedPeople = selectedPeople {
                             ForEach([selectedPeople]) { people in
                                 NavigationLink(destination: ExpensesPeooplesView(peoples: $budget.wrappedValue.peoples, selectedPeople: $selectedPeople)) {
                                     HStack {
-                                        Text("Paid By")
+                                        Text(K.paidBy)
                                         Spacer()
                                         Text(people.name)
                                     }
@@ -58,28 +58,28 @@ struct AddExpenseView: View {
                 }
                 
                 Section {
-                    TextField("Enter Expense Amount", value: $expense.amount, format: .currency(code: "US"))
+                    TextField(K.enterExpenseAmount, value: $expense.amount, format: .currency(code: K.us))
                         .keyboardType(.numbersAndPunctuation)
                         .focused($focusedField, equals: .amount)
                 } header: {
-                    Text("EXPENSE AMOUNT")
+                    Text(K.expenseAmount)
                 }
                 
-                Section("CUSTOM SPLIT") {
+                Section(K.customSplit) {
                     Toggle(isOn: $isCustomEnabled) {
-                        Text("EXPENSE AMOUNT")
+                        Text(K.enableCustomSplit)
                     }
                     if isCustomEnabled {
                         ForEach($budget.wrappedValue.peoples) { people in
                             HStack {
-                                Text("\(people.name) :")
+                                Text(people.name + K.space + K.colon)
                                 Spacer()
                                 ChangeValue(people: people)
                                     .focused($focusedField, equals: .amount)
                             }
                         }
                         if validateExactMatch() {
-                            Text("The Split does not Cover the Entire Expense")
+                            Text(K.validSplit)
                                 .font(.footnote)
                                 .foregroundStyle(.red)
                                 .multilineTextAlignment(.center)
@@ -89,7 +89,7 @@ struct AddExpenseView: View {
                             Image(uiImage: uiImage)
                                 .resizable()
                                 .scaledToFit()
-                        } else if let uiImage = UIImage(systemName: "photo") {
+                        } else if let uiImage = UIImage(systemName: K.photoIcon) {
                             Image(uiImage: uiImage)
                                 .resizable()
                                 .scaledToFit()
@@ -98,7 +98,7 @@ struct AddExpenseView: View {
                             selection: $selectedItem,
                             matching: .images,
                             photoLibrary: .shared()) {
-                                Text("Add Picture")
+                                Text(K.addPic)
                                     .foregroundStyle(.white)
                             }
                             .frame(maxWidth: .infinity)
@@ -106,7 +106,7 @@ struct AddExpenseView: View {
                             .background(.blue)
                             .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                             .padding()
-                            .navigationTitle("Add an Expense")
+                            .navigationTitle(K.addAnExpense)
                             .onChange(of: selectedItem) { _, newItem in
                                 Task {
                                     if let data = try? await newItem?.loadTransferable(type: Data.self) {
@@ -123,7 +123,7 @@ struct AddExpenseView: View {
                         if focusedField == .amount {
                             HStack {
                                 Spacer()
-                                Button("Done") {
+                                Button(K.done) {
                                     focusedField = nil
                                 }
                             }
@@ -158,7 +158,7 @@ struct AddExpenseView: View {
                 expense.receipt = selectedImageData
                 addExpense()
             }) {
-                Text("Add Expense")
+                Text(K.addExpense)
                     .foregroundStyle(.white)
             }
             .disabled(validateAllFields())
@@ -168,7 +168,7 @@ struct AddExpenseView: View {
             .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
             .padding()
         }
-        .navigationTitle("Add an Expense")
+        .navigationTitle(K.addAnExpense)
     }
     
     func addExpense() {
@@ -181,7 +181,7 @@ struct AddExpenseView: View {
     }
     
     func validateAllFields() -> Bool {
-        self.$expense.wrappedValue.name == "" || self.$expense.wrappedValue.amount == 0 || isCustomEnabled && ($budget.wrappedValue.peoples.compactMap({$0.settled}).count == 0 || validateExactMatch())
+        self.$expense.wrappedValue.name == K.emptyString || self.$expense.wrappedValue.amount == 0 || isCustomEnabled && ($budget.wrappedValue.peoples.compactMap({$0.settled}).count == 0 || validateExactMatch())
     }
     
     func validateExactMatch() -> Bool {
@@ -197,11 +197,11 @@ struct ChangeValue: View {
     
     let people: People
     
-    @State private var questionVariable = ""
+    @State private var questionVariable = K.emptyString
     
     var body: some View {
         
-        TextField("$$", text: $questionVariable)
+        TextField(K.symbols, text: $questionVariable)
             .multilineTextAlignment(.trailing)
             .keyboardType(.decimalPad)
             .onChange(of: questionVariable) { old, new in

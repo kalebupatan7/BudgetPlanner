@@ -16,7 +16,7 @@ final class Budget {
     var peoples = [People]()
     @Relationship var expenses = [Expense]()
 
-    init(name: String = "", from: Date = Date(), to: Date = Date().addingTimeInterval(24*60*60), expenses: [Expense] = [Expense](), peoples:[People] = [People]()) {
+    init(name: String = K.emptyString, from: Date = Date(), to: Date = Date().addingTimeInterval(24*60*60), expenses: [Expense] = [Expense](), peoples:[People] = [People]()) {
         self.name = name
         self.from = from
         self.to = to

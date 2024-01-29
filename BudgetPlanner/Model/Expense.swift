@@ -17,7 +17,7 @@ final class Expense {
     @Relationship var shares = [PeopleWithMoney]()
     var receipt: Data?
     
-    init(name: String = "", paidBy: PeopleWithMoney? = nil, amount: Decimal? = nil, date: Date = Date(), shares: [PeopleWithMoney] = [PeopleWithMoney](), receipt: Data? = nil) {
+    init(name: String = K.emptyString, paidBy: PeopleWithMoney? = nil, amount: Decimal? = nil, date: Date = Date(), shares: [PeopleWithMoney] = [PeopleWithMoney](), receipt: Data? = nil) {
         self.name = name
         self.paidBy = paidBy
         self.amount = amount

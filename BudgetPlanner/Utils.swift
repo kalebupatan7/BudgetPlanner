@@ -8,23 +8,9 @@
 import Foundation
 import SwiftUI
 
-extension String {
-    func fixToBrowserString() -> String {
-        self.replacingOccurrences(of: ";", with: "%3B")
-            .replacingOccurrences(of: "\n", with: "%0D%0A")
-            .replacingOccurrences(of: " ", with: "+")
-            .replacingOccurrences(of: "!", with: "%21")
-            .replacingOccurrences(of: "\"", with: "%22")
-            .replacingOccurrences(of: "\\", with: "%5C")
-            .replacingOccurrences(of: "/", with: "%2F")
-            .replacingOccurrences(of: "‘", with: "%91")
-            .replacingOccurrences(of: ",", with: "%2C")
-    }
-}
-
-enum Currencies: String {
-    case dollor = "USD"
-    case euro = "EUR"
+enum Currencies {
+    case dollor
+    case euro
     
     var getCurrencyValue: Decimal {
         switch self {
@@ -32,8 +18,16 @@ enum Currencies: String {
         case .euro: return 0.92
         }
     }
+    
+    var currencyString: String {
+        switch self {
+        case .dollor: return K.dollor
+        case .euro: return K.euro
+        }
+    }
+    
 }
 
 @Observable class CurrencyChange: ObservableObject {
-    var currency:Currencies = UserDefaults.standard.string(forKey: "Currency") == Currencies.dollor.rawValue ? .dollor : .euro
+    var currency:Currencies = UserDefaults.standard.string(forKey: K.currency) == K.euro ? .euro : .dollor
 }

@@ -23,15 +23,15 @@ struct SettleUpView: View {
             }
         }
         Button(action: {
-            var body = "Trip Name: \(budget.name)\n\n"
+            var body = K.tripName + K.colon + K.space + budget.name + K.newLine + K.newLine
             for people in $budget.wrappedValue.peoples {
                 for val in ownesByUser(people,$budget.wrappedValue.expenses) {
-                    body += val + "\n"
+                    body += val + K.newLine
                 }
             }
-            self.openMail(emailTo: self.$budget.wrappedValue.peoples.map({$0.email}).joined(separator: ","), subject: "Remainder From Budgetly", body: body)
+            self.openMail(emailTo: self.$budget.wrappedValue.peoples.map({$0.email}).joined(separator: K.comma), subject: K.remainder, body: body)
         }) {
-            Text("Remind People")
+            Text(K.remindPeople)
                 .foregroundStyle(.white)
         }
         .frame(maxWidth: .infinity)
@@ -58,14 +58,14 @@ struct SettleUpView: View {
         var final = [String]()
         
         for (k,v) in owes {
-            final.append("Owes \(k.name): \((currencyChange.currency.getCurrencyValue * v).formatted(.currency(code: currencyChange.currency.rawValue)))")
+            final.append(K.owes+(k.name)+K.colon+K.space+((currencyChange.currency.getCurrencyValue * v).formatted(.currency(code: currencyChange.currency.currencyString))))
         }
-        final = final.count == 0 ? ["Owes Nothing!"] : final
+        final = final.count == 0 ? [K.owesNothing] : final
         return final
     }
     
     func openMail(emailTo:String, subject: String, body: String) {
-        if let url = URL(string: "mailto:\(emailTo)?subject=\(subject.fixToBrowserString())&body=\(body.fixToBrowserString())"),
+        if let url = URL(string: K.mailTo+(emailTo)+K.subject+(subject.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)+K.body+(body.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)),
            UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }

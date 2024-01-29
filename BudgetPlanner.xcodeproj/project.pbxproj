@@ -28,6 +28,9 @@
 		F8BC710E2B1166B6002740AB /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87147262B045BBC00B36A1D /* Expense.swift */; };
 		F8BC710F2B1166B9002740AB /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87147282B045C6C00B36A1D /* People.swift */; };
 		F8BC71112B1166DD002740AB /* MockContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BC71102B1166DD002740AB /* MockContainer.swift */; };
+		F8EAF0E52B648FD500BB524F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAF0E42B648FD500BB524F /* Constants.swift */; };
+		F8EAF0E72B64A36F00BB524F /* ConstantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAF0E62B64A36E00BB524F /* ConstantTests.swift */; };
+		F8EAF0E82B64A55100BB524F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAF0E42B648FD500BB524F /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,8 @@
 		F8A930DC2B10288B0094DF5B /* SettleUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettleUpView.swift; sourceTree = "<group>"; };
 		F8A930DE2B1037690094DF5B /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		F8BC71102B1166DD002740AB /* MockContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockContainer.swift; sourceTree = "<group>"; };
+		F8EAF0E42B648FD500BB524F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F8EAF0E62B64A36E00BB524F /* ConstantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +138,7 @@
 				F87147212B0454FA00B36A1D /* Views */,
 				F87906852B030348007B591B /* Assets.xcassets */,
 				F8A930DE2B1037690094DF5B /* Utils.swift */,
+				F8EAF0E42B648FD500BB524F /* Constants.swift */,
 				F87906872B030348007B591B /* Preview Content */,
 			);
 			path = BudgetPlanner;
@@ -151,6 +157,7 @@
 			children = (
 				F87906922B030349007B591B /* BudgetPlannerTests.swift */,
 				F8BC71102B1166DD002740AB /* MockContainer.swift */,
+				F8EAF0E62B64A36E00BB524F /* ConstantTests.swift */,
 			);
 			path = BudgetPlannerTests;
 			sourceTree = "<group>";
@@ -200,7 +207,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					F879067D2B030347007B591B = {
@@ -260,6 +267,7 @@
 				F839415F2B084BCE00D8CBD9 /* PeoplesListView.swift in Sources */,
 				F8A930DF2B1037690094DF5B /* Utils.swift in Sources */,
 				F87906842B030347007B591B /* ContentView.swift in Sources */,
+				F8EAF0E52B648FD500BB524F /* Constants.swift in Sources */,
 				F839415D2B08482700D8CBD9 /* TripView.swift in Sources */,
 				F87906822B030347007B591B /* BudgetPlannerApp.swift in Sources */,
 				F8A930DD2B10288B0094DF5B /* SettleUpView.swift in Sources */,
@@ -277,8 +285,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8BC710F2B1166B9002740AB /* People.swift in Sources */,
+				F8EAF0E72B64A36F00BB524F /* ConstantTests.swift in Sources */,
 				F8BC710E2B1166B6002740AB /* Expense.swift in Sources */,
 				F8BC71112B1166DD002740AB /* MockContainer.swift in Sources */,
+				F8EAF0E82B64A55100BB524F /* Constants.swift in Sources */,
 				F8BC710D2B1166B3002740AB /* Budget.swift in Sources */,
 				F87906932B030349007B591B /* BudgetPlannerTests.swift in Sources */,
 			);
@@ -422,6 +432,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BudgetPlanner/Preview Content\"";
+				DEVELOPMENT_TEAM = BXNPH2BQYC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Budget Planner";
@@ -430,6 +441,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -440,6 +452,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -454,6 +467,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BudgetPlanner/Preview Content\"";
+				DEVELOPMENT_TEAM = BXNPH2BQYC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Budget Planner";
@@ -462,6 +476,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,6 +487,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -491,8 +507,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.iit.hawk-kpatan.BudgetPlannerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -513,8 +530,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.iit.hawk-kpatan.BudgetPlannerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

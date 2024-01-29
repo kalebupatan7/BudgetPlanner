@@ -14,19 +14,18 @@ struct TripView: View {
     @Query(sort: [SortDescriptor(\People.dateAdded)]) var oldPeoples: [People]
     @State var budget: Budget
     @State private var peoples = [People]()
-    @State private var name = ""
-    @State private var email = ""
-    
+    @State private var name = K.emptyString
+    @State private var email = K.emptyString
     
     var body: some View {
         Form {
-            Section("TRIP NAME") {
-                TextField("Enter Trip Name", text: $budget.name)
+            Section(K.tripName) {
+                TextField(K.enterTripname, text: $budget.name)
             }
             
-            Section("TRIP DURATION") {
-                DatePicker("From", selection: $budget.from, displayedComponents: [.date])
-                DatePicker("To", selection: $budget.to, displayedComponents: [.date])
+            Section(K.tripDuration) {
+                DatePicker(K.from, selection: $budget.from, displayedComponents: [.date])
+                DatePicker(K.to, selection: $budget.to, displayedComponents: [.date])
             }
             
             Section {
@@ -38,25 +37,25 @@ struct TripView: View {
                         peoples.removeLast()
                     }
                 }) {
-                    Image(systemName: "delete.backward.fill")
+                    Image(systemName: K.deleteIcon)
                         .renderingMode(.original)
                 }
             } header: {
-                Text("PEOPLE")
+                Text(K.people)
             } footer: {
                 if peoples.count == 0 {
-                    Text("Add Atleast One person To The Trip")
+                    Text(K.addAtlestOnePerson)
                         .fontWeight(.regular)
                         .foregroundStyle(.red)
                 }
             }
             
-            Section("ADD A PERSON") {
+            Section(K.addAPerson) {
                 List {
                     ForEach(oldPeoples.filter({$0.isSelected})) { people in
                         NavigationLink(value: people) {
                             HStack {
-                                Text("Name :")
+                                Text(K.name)
                                 Spacer()
                                 Text(people.name)
                             }
@@ -71,7 +70,7 @@ struct TripView: View {
                         peoples.append(people)
                     }
                 }) {
-                    Text("Add Person")
+                    Text(K.addPerson)
                         .foregroundStyle(.white)
                     
                 }
@@ -84,19 +83,19 @@ struct TripView: View {
             }
             
             Section{
-                TextField("Enter Name", text: $name)
-                TextField("Enter Email", text: $email)
+                TextField(K.enterName, text: $name)
+                TextField(K.enterEmail, text: $email)
                     .keyboardType(.emailAddress)
                     .textContentType(.emailAddress)
                     .textInputAutocapitalization(.never)
                 Button(action: {
                     if self.isValidEmailAddr(strToValidate: email) {
                         peoples.append(People(name: name, email: email, isSelected: self.oldPeoples.count == 0 && peoples.count == 0))
-                        name = ""
-                        email = ""
+                        name = K.emptyString
+                        email = K.emptyString
                     }
                 }) {
-                    Text("Add New Person")
+                    Text(K.addNewPerson)
                         .foregroundStyle(.white)
                 }
                 .disabled($name.wrappedValue.isEmpty || $email.wrappedValue.isEmpty)
@@ -106,10 +105,10 @@ struct TripView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                 .padding(10)
             } header: {
-                Text("ADD A NEW PERSON")
+                Text(K.addANewPerson)
             } footer: {
-                if email != "" && !self.isValidEmailAddr(strToValidate: email) {
-                    Text("Enter valid email address")
+                if email != K.emptyString && !self.isValidEmailAddr(strToValidate: email) {
+                    Text(K.enterValidEmail)
                         .fontWeight(.regular)
                         .foregroundStyle(.red)
                 }
@@ -120,7 +119,7 @@ struct TripView: View {
             addBudget()
             
         }) {
-            Text("Add Trip")
+            Text(K.addTrip)
                 .foregroundStyle(.white)
         }
         .disabled(validateAllFields())
@@ -129,7 +128,7 @@ struct TripView: View {
         .background(validateAllFields() ? .gray :.blue)
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
         .padding()
-        .navigationTitle("Add a Trip")
+        .navigationTitle(K.addATrip)
     }
     
     func addBudget() {
@@ -138,25 +137,11 @@ struct TripView: View {
     }
     
     func validateAllFields() -> Bool {
-        self.$budget.wrappedValue.name == "" || self.peoples.count == 0
+        self.$budget.wrappedValue.name == K.emptyString || self.peoples.count == 0
     }
     
     func isValidEmailAddr(strToValidate: String) -> Bool {
-        let emailValidationRegex = "^[\\p{L}0-9!#$%&'*+\\/=?^_`{|}~-][\\p{L}0-9.!#$%&'*+\\/=?^_`{|}~-]{0,63}@[\\p{L}0-9-]+(?:\\.[\\p{L}0-9-]{2,7})*$"
-        let emailValidationPredicate = NSPredicate(format: "SELF MATCHES %@", emailValidationRegex)
+        let emailValidationPredicate = NSPredicate(format: K.selfMatches, K.validEmailRegex)
         return emailValidationPredicate.evaluate(with: strToValidate)
-    }
-}
-
-#Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: Expense.self, configurations: config)
-        let people = People(name: "Dummy", email: "kal@wer.com")
-        let budget = Budget(name: "Dummy", from: Date(), to: Date())
-        return TripView(budget: budget)
-            .modelContainer(container)
-    } catch {
-        fatalError("Failed to create model container.")
     }
 }

@@ -27,7 +27,7 @@ struct ExpensesPeooplesView: View {
                             .foregroundStyle(.black)
                         Spacer()
                         if ((peoples[i].isSelected || checkMark == peoples[i]) && selectedPeople == nil)  || selectedPeople == peoples[i] {
-                            Image(systemName: "checkmark")
+                            Image(systemName: K.checkmarkIcon)
                                 .foregroundStyle(.green)
                         }
                     }

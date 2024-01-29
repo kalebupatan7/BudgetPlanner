@@ -15,6 +15,6 @@ var mockContainer: ModelContainer {
         let container = try ModelContainer(for: Budget.self, Expense.self, People.self, PeopleWithMoney.self, configurations: config, config, config, config)
         return container
     } catch {
-        fatalError("Failed to create container")
+        fatalError(MockConstant.failedToCreateContainer)
     }
 }
