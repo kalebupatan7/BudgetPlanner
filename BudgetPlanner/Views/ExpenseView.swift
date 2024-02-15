@@ -44,5 +44,20 @@ struct ExpenseView: View {
             }
         }
         .navigationTitle(expense.name)
+        .toolbar {
+            Button {
+                currencyChange.currency = currencyChange.currency == .dollor ? .euro : .dollor
+                UserDefaults.standard.set(currencyChange.currency.currencyString, forKey: K.currency)
+            } label: {
+                if currencyChange.currency == .dollor {
+                    Image(systemName: K.dollarsign)
+                        .foregroundColor(.blue)
+                } else {
+                    Image(systemName: K.eurosign)
+                        .foregroundColor(.blue)
+                }
+            }
+        }
+
     }
 }

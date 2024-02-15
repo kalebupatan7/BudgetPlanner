@@ -132,28 +132,24 @@ struct AddExpenseView: View {
                 }
             Button(action: {
                 if let amount = expense.amount {
-                    expense.amount = amount * (currencyChange.currency == .dollor ? 1 : 1.09)
+                    expense.amount = amount * (currencyChange.currency == .dollor ? 1 : 1.086956)
                 }
                  selectedPeople = selectedPeople == nil ? ($budget.wrappedValue.peoples.filter({$0.isSelected}).first == nil ? $budget.wrappedValue.peoples.first : $budget.wrappedValue.peoples.filter({$0.isSelected}).first) : selectedPeople
-                if !isCustomEnabled {
-                    selectedPeople?.settled = expense.amount
-                }
+                
                 if let selectedPeople = selectedPeople {
                     expense.paidBy = PeopleWithMoney(people: selectedPeople,settled: selectedPeople.settled)
                 }
                 var newShares = [PeopleWithMoney]()
                 for people in $budget.wrappedValue.peoples {
-                    if people == selectedPeople {
-                        newShares.append(expense.paidBy!)
+                    if let settled = people.settled {
+                        newShares.append(PeopleWithMoney(people: people, settled: settled  * (currencyChange.currency == .dollor ? 1 : 1.086956)))
                     } else {
-                        if let settled = people.settled {
-                            newShares.append(PeopleWithMoney(people: people, settled: settled  * (currencyChange.currency == .dollor ? 1 : 1.09)))
+                        if let amount = expense.amount {
+                            newShares.append(PeopleWithMoney(people: people, settled: (amount/Decimal($budget.wrappedValue.peoples.count))))
                         }
                     }
                 }
-                if isCustomEnabled {
-                    expense.shares = newShares
-                }
+                expense.shares = newShares
                 $budget.wrappedValue.peoples.forEach {  $0.settled = nil}
                 expense.receipt = selectedImageData
                 addExpense()
@@ -167,6 +163,20 @@ struct AddExpenseView: View {
             .background(validateAllFields() ? .gray :.blue)
             .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
             .padding()
+            .toolbar {
+                Button {
+                    currencyChange.currency = currencyChange.currency == .dollor ? .euro : .dollor
+                    UserDefaults.standard.set(currencyChange.currency.currencyString, forKey: K.currency)
+                } label: {
+                    if currencyChange.currency == .dollor {
+                        Image(systemName: K.dollarsign)
+                            .foregroundColor(.blue)
+                    } else {
+                        Image(systemName: K.eurosign)
+                            .foregroundColor(.blue)
+                    }
+                }
+            }
         }
         .navigationTitle(K.addAnExpense)
     }
@@ -181,7 +191,7 @@ struct AddExpenseView: View {
     }
     
     func validateAllFields() -> Bool {
-        self.$expense.wrappedValue.name == K.emptyString || self.$expense.wrappedValue.amount == 0 || isCustomEnabled && ($budget.wrappedValue.peoples.compactMap({$0.settled}).count == 0 || validateExactMatch())
+        self.$expense.wrappedValue.name == K.emptyString || (self.$expense.wrappedValue.amount ?? 0 == 0) || isCustomEnabled && ($budget.wrappedValue.peoples.compactMap({$0.settled}).count == 0 || validateExactMatch())
     }
     
     func validateExactMatch() -> Bool {

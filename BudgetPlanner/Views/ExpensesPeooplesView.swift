@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ExpensesPeooplesView: View {
+    @Environment(CurrencyChange.self) private var currencyChange
     @Environment(\.dismiss) private var dismiss
     @State var peoples: [People]
     @Binding var selectedPeople: People?
@@ -34,6 +35,21 @@ struct ExpensesPeooplesView: View {
                 }
             }
         }
+        .toolbar {
+            Button {
+                currencyChange.currency = currencyChange.currency == .dollor ? .euro : .dollor
+                UserDefaults.standard.set(currencyChange.currency.currencyString, forKey: K.currency)
+            } label: {
+                if currencyChange.currency == .dollor {
+                    Image(systemName: K.dollarsign)
+                        .foregroundColor(.blue)
+                } else {
+                    Image(systemName: K.eurosign)
+                        .foregroundColor(.blue)
+                }
+            }
+        }
+
     }
 }
 

@@ -23,7 +23,7 @@ struct ExpensesListView: View {
                             Text(expense.name)
                                 .font(.headline)
                             if let paidby = expense.paidBy?.people?.name, let amount = expense.amount {
-                                Text(paidby+K.paid+(currencyChange.currency.getCurrencyValue * amount).formatted(.currency(code: currencyChange.currency.currencyString)))
+                                Text(paidby+K.paid+K.space+(currencyChange.currency.getCurrencyValue * amount).formatted(.currency(code: currencyChange.currency.currencyString)))
                             }
                         }
                     }
@@ -33,9 +33,24 @@ struct ExpensesListView: View {
         }
         .navigationTitle(K.expenses)
         .toolbar {
-            NavigationLink(destination: AddExpenseView(budget: budget)) { Image(systemName: K.plusIcon)
-                    .foregroundColor(.black)
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button {
+                    currencyChange.currency = currencyChange.currency == .dollor ? .euro : .dollor
+                    UserDefaults.standard.set(currencyChange.currency.currencyString, forKey: K.currency)
+                } label: {
+                    if currencyChange.currency == .dollor {
+                        Image(systemName: K.dollarsign)
+                            .foregroundColor(.blue)
+                    } else {
+                        Image(systemName: K.eurosign)
+                            .foregroundColor(.blue)
+                    }
+                    NavigationLink(destination: AddExpenseView(budget: budget)) { Image(systemName: K.plusIcon)
+                            .foregroundColor(.blue)
+                    }
+                }
             }
+            
         }
     }
 

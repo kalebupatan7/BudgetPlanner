@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct EditTripView: View {
+    @Environment(CurrencyChange.self) private var currencyChange
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @Query(sort: [SortDescriptor(\People.dateAdded) ]) private var oldPeoples: [People]
@@ -145,6 +146,21 @@ struct EditTripView: View {
             
         }
         .navigationTitle(budget.name)
+        .toolbar {
+            Button {
+                currencyChange.currency = currencyChange.currency == .dollor ? .euro : .dollor
+                UserDefaults.standard.set(currencyChange.currency.currencyString, forKey: K.currency)
+            } label: {
+                if currencyChange.currency == .dollor {
+                    Image(systemName: K.dollarsign)
+                        .foregroundColor(.blue)
+                } else {
+                    Image(systemName: K.eurosign)
+                        .foregroundColor(.blue)
+                }
+            }
+        }
+
         
     }
     
